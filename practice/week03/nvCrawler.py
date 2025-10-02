@@ -6,9 +6,6 @@ import time
 import json
 import urllib.parse
 
-client_id = '1LMzKQS_OrlkK28JHXTD'
-client_secret = 'ary91bS_14'
-
 def getRequestUrl(url):
   req = urllib.request.Request(url)
   req.add_header("X-Naver-Client-Id", client_id)
