@@ -40,17 +40,26 @@ def getNaverSearch(node, srcText, start, display):
 def getPostData(post, jsonResult, cnt):
   title = post['title']
   description = post['description']
-  org_link = post['originallink']
+  bloggerlink = post['bloggerlink']
   link = post['link']
 
-  pDate = datetime.datetime.strptime(post['pubDate'], '%a, %d %b %Y %H:%M:%S +0900')
-  pDate = pDate.strftime('%Y-%m-%d %H:%M:%S')
+  # 블로그 포스트 날짜 형식 수정
+  pDate = datetime.datetime.strptime(post['postdate'], '%Y%m%d')
+  pDate = pDate.strftime('%Y-%m-%d')
 
-  jsonResult.append({'cnt':cnt, 'title':title, 'description':description,'org_link':org_link, 'link':link, 'pDate':pDate})
+  jsonResult.append({
+    'cnt':cnt, 
+    'title':title, 
+    'description':description,
+    'bloggerlink':bloggerlink, 
+    'link':link, 
+    'postdate':pDate
+  })
+
   return 
 
 def main(): #[CODE 0]
-  node = 'news' #크롤링할 대상
+  node = 'blog' #크롤링할 대상
   srcText = input('검색어를 입력하세요: ') # 검색어 지정
   cnt = 0 # 검색 결과 카운트
   jsonResult = [] # 검색 결과를 정리하여 저장할 리스트 객체
