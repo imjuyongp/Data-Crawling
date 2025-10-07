@@ -40,8 +40,8 @@ def getNaverSearch(node, srcText, start, display):
 def getPostData(post, jsonResult, cnt):
   title = post['title']
   description = post['description']
-  bloggerlink = post['bloggerlink']
-  link = post['link']
+  bloggerlink = post['bloggerlink'] # 블로그 포스트가 있는 블로그의 주소
+  link = post['link'] # 블로그 포스트의 url
 
   # 블로그 포스트 날짜 형식 수정
   pDate = datetime.datetime.strptime(post['postdate'], '%Y%m%d')
@@ -78,6 +78,7 @@ def main(): #[CODE 0]
 
   print('전체 검색 : %d 건' %total)
 
+ # 파일을 열어서 읽거나 쓰는(저장하는) 명령어
   with open('%s_naver_%s.json' % (srcText, node), 'w', encoding = 'utf8') as outfile:
     jsonFile = json.dumps(jsonResult, indent = 4, sort_keys = True, ensure_ascii = False)
     outfile.write(jsonFile)
